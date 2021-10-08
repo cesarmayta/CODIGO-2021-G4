@@ -7,7 +7,9 @@ filasMonedas = monedas.splitlines()
 #print(filasMonedas)
 dicTiposCambio = {}
 for filaMoneda in filasMonedas:
+    #filaMoneda = 'Dolar de N.A.,4.127,4.134'
     registroMoneda = filaMoneda.split(',')
+    #registroMoneda = ['Dolar de N.A','4.127','4.134']
     dicTiposCambio.update({
         registroMoneda[0]:float(registroMoneda[2])
     })
