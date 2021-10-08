@@ -1,7 +1,0 @@
-Dólar de N.A.,4.127,4.134
-Peso Colombiano,0.001,0.001
-Libra Esterlina,5.454,5.957
-Yen Japonés,0.032,0.040
-Peso Mexicano, ,0.220
-Franco Suizo,3.723,4.861
-Euro,4.783,4.859

@@ -1,9 +1,0 @@
-lista2=[4,{"nombre":"b","edad":25}]
-lista3=[3,{"nombre":"b","edad":23}]
-lista4=[5,{"nombre":"b","edad":42}]
-listatotal=[]
-listatotal.append(lista2)
-listatotal.append(lista3)
-listatotal.append(lista4)
-listatotal.sort()
-print(listatotal)
