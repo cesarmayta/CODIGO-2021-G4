@@ -1,0 +1,48 @@
+/*---------------------------------------------------
+	Home-3 style
+----------------------------------------------------*/
+.home-3 {
+  background-color: #fff;
+  .navbar-area .nav-container .navbar-collapse .navbar-nav li:hover a,
+  .navbar-area .nav-container .navbar-collapse .navbar-nav li.menu-item-has-children:hover a {
+    color: var(--main-color);
+  }
+  .nav-right-part ul li span,
+  .navbar-area-2 .nav-container .navbar-collapse .navbar-nav li.menu-item-has-children .sub-menu li:hover,
+  .navbar-area .nav-container .navbar-collapse .navbar-nav li.menu-item-has-children:hover:after, .navbar-area .nav-container .navbar-collapse .navbar-nav li.menu-item-has-children:hover:before {
+    background: var(--main-color);
+  }
+  .navbar-area-2.navbar-area-fixed {
+    background: rgba(255, 238, 238, 0.9);;
+  }
+  .banner-area-2 {
+    background: #FFEEEE;
+    height: auto;
+    .single-input-wrap input {
+      border-radius: 8px;
+    }
+    .single-input-wrap .btn {
+      height: 100%;
+      border-radius: 8px;
+      padding: 0 25px;
+    }
+  }
+  .banner-area-2 .banner-thumb {
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: -1;
+  }
+  .banner-area-2 .banner-inner {
+    padding: 190px 0 230px;
+  }
+  .banner-area-2 .banner-inner h1 {
+    margin-bottom: 45px;
+  }
+  .widget_link ul li:hover a {
+    color: var(--main-color);
+  }
+  .widget_link ul li span {
+    color: var(--main-color);
+  }
+}

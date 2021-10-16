@@ -1,0 +1,30 @@
+PASO 1: CREAR Y ACTIVAR ENTORNO VIRTUAL
+    python -m venv venv
+    source venv/Scripts/activate
+
+NOTA: para saber si estoy en el entorno virtual debo ver arriba del cursor la carpeta venv entre parentesis
+
+
+PASO 2 - INSTALAR DJANGO Y MYSQLCLIENTE Y PILLOW
+    pip install django
+    pip install mysqlclient
+    pip install Pillow
+    
+    pip install django-tailwind
+
+NOTA : Para ver si se instalaron las librerias ejecutar pip freeze, tailwind es opcional
+
+PASO 3 - CREAR PROYECTO Y APP
+    django-admin startproject menuya
+    python manage.py startapp delivery
+
+NOTA: Para crear el app se debe ingresar a la carpeta menuya que fue creada con el 1er comando
+
+PASO 4 - DESPUES DE CREAR MIS MODELOS en el app
+    python manage.py makemigrations 
+    python manage.py migrate
+    python manage.py createsuperuser
+
+
+NOTA: makemigrations te prepara los modelos, migrate los migra a la base de datos y createsuperuser te crea un 
+super usuario administrador
