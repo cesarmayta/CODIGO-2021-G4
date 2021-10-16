@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <h1>CURSOS</h1>
+    <ul>
+    {% for curso in lstCursos %}
+        <li>{{ curso.nombre }}</li>
+    {% endfor %}
+    </ul>
+    <form action="{% url 'registrarCurso'  %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="curso"/>
+        <input type="submit" name="enviar" value="Registrar Nuevo Curso">
+    </form>
+{% endblock %}
