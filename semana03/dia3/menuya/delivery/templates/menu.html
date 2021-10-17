@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block content %}
+{% load static %}
+<!-- bredcrumb Area Start-->
+<section class="breadcrumb-area">
+    <div class="banner-bg-img"></div>
+    <div class="banner-shape-1"><img src="{% static 'assets/img/banner/shape-1.png' %}" alt="img"></div>
+    <div class="banner-shape-2"><img src="{% static 'assets/img/banner/shape-2.png' %}" alt="img"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 align-self-center">
+                <div class="banner-inner text-center">
+                    <h3>Seleccione su pedido
+                    </h3>
+                    <h1>NUESTRO MENU</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- bredcrumb Area End -->
+
+<!-- category Area Start-->
+<section class="category-area">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-12 align-self-center">
+                <ul class="category-menu">
+                    {% for cat in categorias %}
+                    <li class="category-wrap"><a href="shop.html"><img src="{{ cat.imagen.url }}" alt="category">{{ cat.nombre }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- category Area End -->
+<!-- populer Area Start-->
+<section class="populer-area pd-top-50 pd-bottom-120">
+    <div class="container">
+        <div class="row justify-content-center">
+        {% for p in platos %}
+            <div class="col-lg-4 col-md-6">
+                <div class="single-item-wrap">
+                    <div class="thumb">
+                        <img src="{{ p.imagen.url }}" alt="img">
+                        <a class="fav-btn" href="#"><i class="ri-heart-line"></i></a>
+                    </div>
+                    <div class="wrap-details">
+                        <h5><a href="single-product.html">{{ p.nombre }}</a></h5>
+                        <div class="wrap-footer">
+                            <h6 class="price">S/. {{ p.precio }} </h6>
+                        </div>
+                    </div>
+                    <div class="btn-area">
+                        <a class="btn btn-secondary" href="{% url 'delivery:plato' p.id %}">MAS INFO </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- populer Area End -->
+{% endblock %}
