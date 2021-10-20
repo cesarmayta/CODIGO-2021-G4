@@ -97,14 +97,14 @@
                     </ul>
                 </div>
                 <div class="logo">
-                    <a class="main-logo" href="home-1.html"><img src="{% static 'assets/img/logo.png' %}" alt="img"></a>
+                    <a class="main-logo" href="home-1.html"><img src="{{ request.session.negocio_logo }}" alt="img"></a>
                 </div>
                 <div class="nav-right-part nav-right-part-mobile">
                     <ul>
                         <li><a class="search" href="#"><i class="ri-search-line"></i></a>
                         </li>
                         <li class="phone-contact d-md-block d-none"><i class="ri-phone-fill float-start"></i>
-                            +997 509 153 849
+                            {{ request.session.negocio_telefono }}
                         </li>
                         <li class="menu-cart"><a href="cart.html">CART <span>1</span></a></li>
                         <li>49.50 $</li>
@@ -115,7 +115,7 @@
                         <li><a class="search" href="#"><i class="ri-search-line"></i></a>
                         </li>
                         <li class="phone-contact"><i class="ri-phone-fill float-start"></i>
-                            +997 509 153 849
+                            {{ request.session.negocio_telefono }}
                         </li>
                         <li class="menu-cart"><a href="cart.html">CART <span>1</span></a></li>
                         <li>49.50 $</li>
@@ -153,7 +153,7 @@
                                 <li class="single-info-item">
                                     <img src="{% static 'assets/img/icon/phone.png' %}" alt="icon">
                                     <div class="details">
-                                        +997 509 153 849
+                                        {{ request.session.negocio_telefono }}
                                     </div>
                                 </li>
                             </ul>

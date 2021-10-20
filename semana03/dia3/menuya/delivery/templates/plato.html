@@ -19,10 +19,11 @@
                         </div>                            
                     </div>   
                     <p class="mt-4">{{ plato.descripcion }}</p>    
-                    <form>
+                    <form action="{% url 'delivery:agregarCarrito' plato.id %}" method="post">
+                        {% csrf_token %}
                         <div class="quantity buttons_added">
                             <input type="button" value="-" class="minus">
-                            <input type="number" class="input-text qty text" step="1" min="1" max="10000" name="quantity" value="1">
+                            <input type="number" class="input-text qty text" step="1" min="1" max="10000" name="cantidad" value="1">
                             <input type="button" value="+" class="plus">
                         </div>
                         <button type="submit" class="btn btn-secondary">AGREGAR AL CARRITO</button>
