@@ -52,7 +52,7 @@ class Pedido(models.Model):
     montoPago = models.DecimalField(max_digits=20,decimal_places=2)
     
     def __str__(self):
-        return self.fechaHora
+        return str(self.fechaHora)
     
 class PedidoDetalle(models.Model):
     pedido = models.ForeignKey(Pedido,on_delete=models.RESTRICT)

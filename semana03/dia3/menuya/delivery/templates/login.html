@@ -4,8 +4,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-7">
+                <div class="alert alert-danger" role="alert">
+                    {{error}}
+                  </div>
                 <div class="bill-payment-wrap">
                     <h5>LOGIN DE USUARIO</h5>
+
                     <form class="default-form-wrap style-2" action="{% url 'delivery:login' %}" method="post">
                         {% csrf_token %}
                         <div class="row">

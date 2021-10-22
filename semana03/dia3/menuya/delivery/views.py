@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 
-from .models import Categoria,Plato,Negocio,Cliente
+from .models import Categoria,Plato,Negocio,Cliente,FormaPago,Pedido,PedidoDetalle
 
 # Create your views here.
 def index(request):
@@ -55,6 +55,7 @@ def limpiarCarrito(request):
 from django.contrib.auth import authenticate,login,logout
 
 def loginUsuario(request):
+    context = {}
     
     if request.method == 'POST':
         dataUsuario = request.POST['usuario']
@@ -62,14 +63,19 @@ def loginUsuario(request):
         
         print(dataUsuario)
         
+        
+        
         loginUsuario  = authenticate(request,username=dataUsuario,password=dataClave)
         if loginUsuario is not None:
             login(request,loginUsuario)
-            return redirect('/delivery/carrito')
-        
+            return redirect('/delivery/pedido')
+        else:
+            context = {
+                'error':'datos incorrectos'
+            }
         
     
-    return render(request,'login.html')
+    return render(request,'login.html',context)
 
 from django.contrib.auth.models import User
 
@@ -95,4 +101,61 @@ def registroCliente(request):
         return redirect('/delivery/login')
     
     return render(request,'registro.html')
+
+def registrarPedido(request):
+   
+    if request.user.id is not None:
+        usuarioPedido = User.objects.get(pk=request.user.id)
+        clientePedido = Cliente.objects.get(usuario=usuarioPedido)
+        lstFormasPago = FormaPago.objects.all()
+        context = {
+            'nombres':request.user.first_name,
+            'apellidos':request.user.last_name,
+            'telefono':clientePedido.telefono,
+            'email':request.user.email,
+            'formaspago': lstFormasPago
+            
+        }
+    else:
+        return redirect('/delivery/login')
     
+    
+    return render(request,'pedido.html',context)
+
+def confirmarPedido(request):
+    #REGISTRO PEDIDO EN BASE DE DATOS
+    print("ENVIANDO PEDIDO.....")
+    usuarioPedido = User.objects.get(pk=request.user.id)
+    clientePedido = Cliente.objects.get(usuario=usuarioPedido)
+    dataFormaPagoId = request.POST['chkFormaPago']
+    dataDireccion = request.POST['direccion']
+            
+    dataFormaPago = FormaPago.objects.get(pk=dataFormaPagoId)
+            
+    nuevoPedido = Pedido()
+    nuevoPedido.cliente = clientePedido
+    nuevoPedido.direccion = dataDireccion
+    nuevoPedido.formaPago = dataFormaPago
+    nuevoPedido.totalPagar = float(request.session.get("totalCart"))
+    nuevoPedido.montoPago = 0
+    nuevoPedido.save()
+    
+    #registramos detalle de pedido
+    carritoPedido = request.session.get("cart")
+    for key,value in carritoPedido.items():
+        nuevoDetalle = PedidoDetalle()
+        nuevoDetalle.pedido = nuevoPedido
+        nuevoDetalle.cantidad = int(value["cantidad"])
+        nuevoDetalle.precio = float(value["precio"])
+        
+        detallePlato = Plato.objects.get(pk=value["plato_id"])
+        
+        nuevoDetalle.plato = detallePlato
+        nuevoDetalle.save()
+    
+    carrito = Cart(request)
+    carrito.clear()
+    return render(request,'gracias.html')
+    
+def gracias(request):
+    return render(request,'gracias.html')

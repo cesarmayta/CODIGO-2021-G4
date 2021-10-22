@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% block content %}
+    <!-- checkout area start -->
+    <div class="checkout-area pd-top-120 pd-bottom-120">
+
+        <div class="container">
+            <form class="default-form-wrap style-2" action="{% url 'delivery:confirmarPedido' %}" method="post">
+                {% csrf_token %}
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="bill-payment-wrap">
+                            <h5>PEDIDO
+                            </h5>
+                            
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Nombre</label>
+                                        <div class="single-input-wrap">
+                                            <input type="text" class="form-control" value="{{ nombres }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Apellidos</label>
+                                        <div class="single-input-wrap">
+                                            <input type="text" class="form-control" value="{{ apellidos }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Dirección</label>
+                                        <div class="single-input-wrap">
+                                            <input type="text" name="direccion" class="form-control" placeholder="dirección de envio">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Telefono</label>
+                                        <div class="single-input-wrap">
+                                            <input type="text" class="form-control" value="{{ telefono }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Email</label>
+                                        <div class="single-input-wrap">
+                                            <input type="text" class="form-control" value="{{ email }}">
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>                    
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="order-area">
+                            <h5 class="title">Resumen de Pedido</h5>
+                            <div class="order-product">
+                                {% for key,value in request.session.cart.items %}
+                                    <div class="thumb">
+                                        <img src="{{ value.imagen }}" alt="img">
+                                    </div>
+                                    <div class="details">
+                                        <h6>{{ value.nombre }}</h6>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <ul class="amount">
+                                <li class="total">Total<span>S/. {{ request.session.totalCart }}</span></li>
+                            </ul>
+                            <div class="peyment-method">
+                                <h6>Formas de Pago</h6>
+                                <ul class="card-area">
+                                    {% for pago in formaspago %}
+                                    <li>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="chkFormaPago" id="flexRadioDefault1" value="{{pago.id}}">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                            </label>
+                                        </div>
+                                        <div class="details">
+                                            <h6>{{ pago.nombre }}</h6>
+                    
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <input type="submit" value="CONFIRMAR PEDIDO " class="btn btn-secondary w-100"/>
+                        </div>                
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- checkout area end -->
+{% endblock %}
