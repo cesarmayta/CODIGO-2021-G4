@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="checkout-area pd-top-120 pd-bottom-120">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="bill-payment-wrap">
+                    <h5>REGISTRO DE NUEVO CLIENTE</h5>
+                    <form class="default-form-wrap style-2" action="{% url 'delivery:registro' %}" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Usuario</label>
+                                <div class="single-input-wrap">
+                                    <input type="text" name="usuario" class="form-control" placeholder="tu nombre de usuario">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Password</label>
+                                <div class="single-input-wrap">
+                                    <input type="Password" name="password" class="form-control" placeholder="tu clave">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Nombres</label>
+                                <div class="single-input-wrap">
+                                    <input type="text" name="nombre" class="form-control" placeholder="Nombres">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Apellidos</label>
+                                <div class="single-input-wrap">
+                                    <input type="text" name="apellido" class="form-control" placeholder="Apellidos">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Telefono</label>
+                                <div class="single-input-wrap">
+                                    <input type="text" name="telefono" class="form-control" placeholder="Telefono">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Email</label>
+                                <div class="single-input-wrap">
+                                    <input type="text" name="email" class="form-control" placeholder="Email">
+                                </div>
+                            </div>
+                            <input type="submit" class="btn btn-base" value="REGISTRAR DATOS">
+                        </div>
+                    </form>
+                </div>                    
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

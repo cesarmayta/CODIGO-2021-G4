@@ -22,7 +22,7 @@
                             <tbody>
                                 {% for key,value in request.session.cart.items %}
                                     <tr>
-                                        <td class="table-close-btn"><a href="#"><i class="ri-close-line"></i></a></td>
+                                        <td class="table-close-btn"><a href="{% url 'delivery:eliminarCarrito' value.plato_id %}"><i class="ri-close-line"></i></a></td>
                                         <th scope="row"><img src="{{ value.imagen }}" alt="img"></th>
                                         <td colspan="2" class="item-name">
                                             <div class="details">
@@ -48,13 +48,14 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="promotional-area">
-                        <form class="default-form-wrap">
+                        <form class="default-form-wrap" action="{% url 'delivery:limpiarCarrito' %}">
                             <div class="row">
                                 <div class="col-md-4 col-sm-6 text-md-end">
-                                    <button type="submit" class="btn btn-base">ACTUALIZAR CARRITO</button>
+                                    <button type="submit" class="btn btn-base">LIMPIAR CARRITO</button>
                                 </div>
                             </div>
                         </form>
+                        <a class="btn btn-secondary w-100" href="/delivery"> AGREGAR MAS PLATOS</a>
                     </div>
                 </div>
                 <div class="col-lg-4">

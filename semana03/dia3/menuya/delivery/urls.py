@@ -7,5 +7,10 @@ app_name = 'delivery'
 urlpatterns = [
     path('',views.index,name='index'),
     path('<int:plato_id>',views.plato,name='plato'),
-    path('agregarCarrito/<int:plato_id>',views.agregarCarrito,name='agregarCarrito')
+    path('agregarCarrito/<int:plato_id>',views.agregarCarrito,name='agregarCarrito'),
+    path('carrito',views.mostrarCarrito,name='carrito'),
+    path('eliminarCarrito/<int:plato_id>',views.eliminarPlatoCarrito,name='eliminarCarrito'),
+    path('limpiarCarrito',views.limpiarCarrito,name='limpiarCarrito'),
+    path('login',views.loginUsuario,name='login'),
+    path('registro',views.registroCliente,name='registro')
 ]

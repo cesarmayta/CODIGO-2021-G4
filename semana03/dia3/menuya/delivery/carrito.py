@@ -6,7 +6,7 @@ class Cart:
         totalCart = self.session.get("totalCart")
         if not cart:
             cart = self.session["cart"] = {}
-            totalCart = self.session["cart"] = 0
+            totalCart = self.session["totalCart"] = 0
         self.cart = cart
         self.totalCart = totalCart
         
@@ -48,3 +48,4 @@ class Cart:
             
     def clear(self):
         self.session["cart"] = {}
+        self.session["totalCart"] = 0
