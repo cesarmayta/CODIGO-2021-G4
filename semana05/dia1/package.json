@@ -1,0 +1,14 @@
+{
+  "name": "alumnos",
+  "version": "1.0.0",
+  "description": "api rest de alumnos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "cesar mayta",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
