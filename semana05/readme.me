@@ -1,0 +1,26 @@
+PASOS PARA DJANGO
+1 - CREAR ENTORNO VIRTUAL
+python -m venv venv
+2 - ACTIVAR ENTORNO VIRTUAL
+source venv/Scripts/activate
+3 - INSTALAR DJANGO Y MYSQLCLIENT
+pip install django MYSQLCLIENT
+4 - CREAR PROYECTO
+django-admin startproject panel
+5 - CREAR APP
+cd panel
+python manage.py startapp APP
+6 - AGREGAR APP a settings dentro de panel
+INSTALLED_APPS = [
+    'app',
+7 - CONFIGURAR BASE DE DATOS MYSQL
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'sistemapos',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
+}

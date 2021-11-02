@@ -1,7 +1,7 @@
 {
-  "name": "alumnos",
+  "name": "puntoventa",
   "version": "1.0.0",
-  "description": "api rest de alumnos",
+  "description": "api rest de sistema de punto de venta",
   "main": "index.js",
   "scripts": {
     "dev": "set DEBUG=app:*&& nodemon index"
