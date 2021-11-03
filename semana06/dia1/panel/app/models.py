@@ -1,5 +1,7 @@
 from django.db import models
 
+from cloudinary.models import CloudinaryField
+
 # Create your models here.
 class Cargo(models.Model):
     cargo_id = models.AutoField(primary_key=True)
@@ -39,7 +41,7 @@ class Empleado(models.Model):
 
 
 class Mesa(models.Model):
-    mesa_id = models.IntegerField(primary_key=True)
+    mesa_id = models.AutoField(primary_key=True)
     mesa_nro = models.CharField(max_length=3)
     mesa_cap = models.IntegerField(blank=True, null=True)
 
@@ -53,7 +55,8 @@ class Mesa(models.Model):
 class Plato(models.Model):
     plato_id = models.AutoField(primary_key=True)
     plato_nom = models.CharField(max_length=200)
-    plato_img = models.CharField(max_length=200, blank=True, null=True)
+    #plato_img = models.CharField(max_length=200, blank=True, null=True)
+    plato_img = CloudinaryField('image',default='')
     plato_pre = models.FloatField(blank=True, null=True)
     categoria = models.ForeignKey(Categoria, models.DO_NOTHING)
 
@@ -66,7 +69,7 @@ class Plato(models.Model):
 
 
 class Pedido(models.Model):
-    pedido_id = models.IntegerField(primary_key=True)
+    pedido_id = models.AutoField(primary_key=True)
     pedido_fech = models.DateTimeField(blank=True, null=True)
     pedido_nro = models.CharField(max_length=200, blank=True, null=True)
     pedido_est = models.CharField(max_length=100, blank=True, null=True)
