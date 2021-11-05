@@ -29,6 +29,7 @@ router.get('/categoria/:id/plato',(req,res)=>{
     const {id} = req.params;
     mysqlConnection.query('CALL obtenerPlatosPorCategoriaId(?)',[id],(err,rows)=>{
         if(!err){
+            //https://res.cloudinary.com/dd9ad40qm/
             res.json(rows[0]);
         }else{
             console.log(err);
