@@ -20,10 +20,11 @@ export const iniciarSesionAction = (correo, password) => {
 	return async (dispatch) => {
 		dispatch(inicioCargandoLogin());
 
-		const endpoint = `${URL_BACKEND}/login`;
+		//const endpoint = `${URL_BACKEND}/login`;
+		const endpoint = `http://127.0.0.1:8000/api/token/`;
 		const response = await axios.post(
 			endpoint,
-			JSON.stringify({ correo: correo, password: password }),
+			JSON.stringify({ username: correo, password: password }),
 			{
 				headers: {
 					'Content-type': 'application/json'
@@ -31,18 +32,20 @@ export const iniciarSesionAction = (correo, password) => {
 			}
 		);
 		if (response.status === 200) {
-			let { token } = response.data;
+			//console.log(response.data);
+			let token = response.data.access;
 			localStorage.setItem('token', token);
+			//console.log(token);
 			let payload = token.split('.')[1];
+			//console.log(payload);
 			let payloadDecoded = atob(payload);
 			let payloadJSON = JSON.parse(payloadDecoded);
+			console.log("payload",payloadJSON)
 			dispatch({
 				type: SET_SUCCESS_LOGIN,
 				payload: {
 					autenticado: true,
-					usu_nom: payloadJSON.usu_nom,
-					usu_id: payloadJSON.usu_id,
-					usu_tipo: payloadJSON.usu_tipo,
+					usu_id: payloadJSON.user_id,
 					token: token
 				}
 			});
@@ -54,26 +57,33 @@ export const iniciarSesionAction = (correo, password) => {
 export const iniciarSesionLocalStorage = () => {
 	return async (dispatch) => {
 		dispatch(inicioCargandoLogin());
-		let token = localStorage.getItem('token');
+		//let token = localStorage.getItem('token');
+		let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYzNjU5MTM2NCwiaWF0IjoxNjM2NTA0OTY0LCJqdGkiOiJmZmM1ZWJmOTY5Nzk0OTBhODlmZmZlMTEyMmYxN2M3MiIsInVzZXJfaWQiOjJ9.D1Jdh1Q5vhS_cGdasspsDIpmbYDNINtB-dEi6zUdP8g'
 		try {
 			if (token) {
-				const endpoint = `${URL_BACKEND}/verificar`;
-				const response = await axios.post(endpoint, null, {
+				const endpoint = `${URL_BACKEND}/auth/empleado`;
+				const response = await axios.get
+				(endpoint,
+				{
 					headers: {
-						authorization: `Bearer ${token}`
+						'authorization': `bearer ${token}`
 					}
-				});
+				}
+				);
+				console.log(response.data)
 				if (response.data.ok) {
+
+					localStorage.setItem('empleado_nom', response.data.content.empleado_nom);
+					
 					let payload = token.split('.')[1];
 					let payloadDecoded = atob(payload);
 					let payloadJSON = JSON.parse(payloadDecoded);
+					
 					dispatch({
 						type: SET_SUCCESS_LOGIN,
 						payload: {
 							autenticado: true,
-							usu_nom: payloadJSON.usu_nom,
 							usu_id: payloadJSON.usu_id,
-							usu_tipo: payloadJSON.usu_tipo,
 							token: token
 						}
 					});

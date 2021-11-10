@@ -21,7 +21,7 @@ router.get('/auth/empleado',validarToken,(req,res)=>{
     (err,authData)=>{
         if(err){
             res.json({
-                mensaje:'acceso privado',
+                mensaje:'acceso denegado',
                 err
             })
         }else{
@@ -30,7 +30,10 @@ router.get('/auth/empleado',validarToken,(req,res)=>{
             mysqlConnection.query('select * from tbl_empleado where usuario_id = ?',[usuario_id],(err,rows,fields) =>
             {
                if(!err){
-                   res.json(rows[0]);
+                   res.json(
+                       {ok:true,
+                        content:rows[0]
+                       });
                }else{
                    console.log(err);
                }
@@ -41,6 +44,7 @@ router.get('/auth/empleado',validarToken,(req,res)=>{
 
 function validarToken(req,res,next){
     const bearerHeader = req.headers['authorization'];
+    console.log("token:",bearerHeader);
     if(typeof bearerHeader !== 'undefined'){
         const bearer = bearerHeader.split(' ')
         const bearerToken = bearer[1]
@@ -48,6 +52,7 @@ function validarToken(req,res,next){
         req.token = bearerToken
         next()
     }else{
+        console.log("error al conectarse al endpoint");
         res.sendStatus(403);
     }
 }

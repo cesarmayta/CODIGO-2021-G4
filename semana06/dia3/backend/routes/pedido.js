@@ -4,15 +4,22 @@ const router = express.Router();
 const mysqlConnection = require('../lib/mysql');
 
 router.get('/pedido',(req,res) => {
-    mysqlConnection.query('select * from tbl_pedido',
+    
+    mysqlConnection.query(
+    "SELECT DATE_FORMAT(p.pedido_fech, '%Y-%m-%d %H:%i:00') as pedido_fech,pp.pedido_plato_plato_id as plato_id,pp.pedido_plato_can as pedidoplato_cant FROM tbl_pedido_plato pp INNER JOIN tbl_pedido p on pp.pedido_plato_pedido_id = p.pedido_id",
     (err,rows,fields) => {
         if(!err){
-            res.json(
-                { 
-                    "ok":true,
-                    "content": rows
-                }
-                );
+                res.json(
+                    { 
+                        "ok":true,
+                        "pedidos":[
+                            {...rows[0],
+                                PedidoPlatos:rows
+                            }
+                        ]
+
+                    }
+                    );
         }else{
             console.log(err);
         }

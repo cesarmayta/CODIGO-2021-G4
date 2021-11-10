@@ -12,8 +12,8 @@ const AuthLogin = (props) => {
 	}
 
 	const [formulario, setFormulario] = useState({
-		correo: 'jgarnica@gmail.com',
-		password: '123456'
+		correo: 'cesarmayta@gmail.com',
+		password: 'codigo2021'
 	});
 
 	const handleChange = (e) => {
@@ -35,7 +35,7 @@ const AuthLogin = (props) => {
 				<form className="formulario" onSubmit={handleSubmit}>
 					<label htmlFor="">Email:</label>
 					<input
-						type="email"
+						type="text"
 						className="formulario__input"
 						placeholder="Email"
 						name="correo"

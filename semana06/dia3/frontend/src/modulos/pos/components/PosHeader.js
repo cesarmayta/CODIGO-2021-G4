@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 // import miImagen from './../../../assets/images/achirvo.svg';
 
 const PosHeader = () => {
+	let empleado_nom = localStorage.getItem('empleado_nom');
 	return (
 		<header className="header">
 			<div className="header__logo">
@@ -23,7 +24,7 @@ const PosHeader = () => {
 					Ir a Dashboard
 				</Link>
 				<img src="https://randomuser.me/api/portraits/men/90.jpg" alt="" />
-				<span>Jorge Garnica</span>
+				<span>{empleado_nom}</span>
 			</div>
 		</header>
 	);

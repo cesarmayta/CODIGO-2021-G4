@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'rest_framework',
-    'rest_framework_simplejwt'
+    'rest_framework_simplejwt',
+    'corsheaders'
 ]
 
 REST_FRAMEWORK = {
@@ -51,6 +52,8 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -144,3 +147,11 @@ cloudinary.config(
   api_key = '629175225521913',  
   api_secret = 'GhaZ0Vbc7DnD4ACZ0IF6ok-30oM'  
 )
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+from datetime import timedelta
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1)
+}
