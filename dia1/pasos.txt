@@ -1,0 +1,5 @@
+1 - CREAR PROYECTO EN NODE
+npm init -y
+2 - INSTALAR DEPENDENCIAS
+npm install express
+npm install nodemon -D
