@@ -46,12 +46,17 @@ const Login = ({ history }) => {
         .auth()
         .signInWithPopup(provider)
         .then(result => {
-            console.log(result);
-            const token = app.auth().currentUser.getIdToken(true);
-           
-            if(token){
-                localStorage.setItem("@token",token);
-            }
+            //console.log(result);
+            app.auth().onAuthStateChanged(function(user) {
+                if (user) {
+
+                    user.getIdToken().then(function(idToken) {
+                       console.log("Aqui el token",idToken);
+                       localStorage.setItem("@token",idToken); 
+                    });
+                    
+                }
+            });
 
             
         })
